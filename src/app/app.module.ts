@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot(effects),
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
