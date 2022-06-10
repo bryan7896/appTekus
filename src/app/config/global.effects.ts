@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Actions, createEffect, EffectNotification, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { tap, withLatestFrom, map, mergeMap, filter, exhaustMap, catchError, concatMap, switchMap, delay, take, takeUntil } from 'rxjs/operators';
-import { ApiService } from '../services/api.services';
-import { ActionTypes, getContador, putContador, setContador } from './global.action';
+import { map, exhaustMap, catchError } from 'rxjs/operators';
 
+import { ActionTypes, getContador, putContador, setContador } from './global.action';
+import { ApiService } from '../services/api.services';
+import { GlobalService } from "../services/global.service"
 @Injectable()
 
 export class GeneralEffects {
   constructor(
     private actions$: Actions,
     private apiService: ApiService,
-    //private router: Router,
+    private globalService: GlobalService,
     private store$: Store,
   ) { }
 
