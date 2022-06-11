@@ -1,3 +1,30 @@
-<p>description works!</p>
-<app-description-table></app-description-table>
-<app-pagination></app-pagination>
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <img class="logoBitcoin" src="../../../assets/bitcoin.gif" /><br>
+            <img class="logoBitcoin" src="../../../assets/bitcoin.gif" />
+            <button type="button" class="btn btn-dark" (click)="navigateHome()">
+                <img class="imgReturn" src="../../../assets/home.png" />
+            </button>
+            <img class="logoBitcoin" src="../../../assets/bitcoin.gif" />
+        </div>
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="text-light">0.256</td>
+                        <td class="text-light">18/05/05</td>
+                    </tr>
+                    <tr>
+                        <td class="text-light">$25.26</td>
+                        <td class="text-light">+1.85</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="p-4">
+    <app-description-table [selectedDay]="selectedDayUser" [currentTable]="listTable"></app-description-table>
+</div>
+<app-pagination (selectedNumber)="selectedNumber($event)" [currentPage]="currentPage"></app-pagination>

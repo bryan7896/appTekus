@@ -1,0 +1,36 @@
+.div_centrado{
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+
+    transform: translate(-50%, -50%);
+}
+
+.pagination > li > a
+{
+    background-color: #212529;
+    color: #ffffff;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #ffffff;
+    background-color: rgb(114, 114, 114);
+    border-color: rgb(99, 99, 99);
+}
+
+.pagination > .active > a
+{
+    color: rgb(255, 255, 255);
+    background-color: #ef7d10 !Important;
+    border: solid 1px #ef7d10 !Important;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #ffa551 !Important;
+    border: solid 1px #ef7d10;
+}

@@ -1,0 +1,19 @@
+.logoBitcoin{
+    width: 40px;
+    height: 40px;
+}
+.logoBitcoin:hover{
+    width: 45px;
+    height: 45px;
+}
+.imgReturn{
+    width: 30px;
+    height: 30px;
+}
+.imgReturn:hover{
+    width: 35px;
+    height: 35px;
+}
+.container{
+    padding-inline: 30px;
+}

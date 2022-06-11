@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-description-table',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DescriptionTableComponent implements OnInit {
 
+  @Input() currentTable: Array<any> = [];
+  @Input() selectedDay: Object = {};
   constructor() { }
 
   ngOnInit(): void {
+    console.log('currentTable',this.currentTable)
+    console.log('selectedDay',this.selectedDay)
   }
 
 }

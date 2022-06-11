@@ -2,3 +2,12 @@
     width: 100px;
     height: 100px;
 }
+.logoBitcoin2{
+    width: 40px;
+    height: 40px;
+}
+.centerLogo{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+}
