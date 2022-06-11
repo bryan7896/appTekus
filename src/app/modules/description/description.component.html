@@ -12,12 +12,20 @@
             <table class="table">
                 <tbody>
                     <tr>
-                        <td class="text-light">0.256</td>
-                        <td class="text-light">18/05/05</td>
+                        <td class="text-light"><span *ngIf="currentBitcoins[0]"
+                            [ngClass]="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) < 0?'text-danger':'text-success'">
+                            ${{currentBitcoins.length>0?currentBitcoins[0].bitcointPrice:0}}</span></td>
+                        <td class="text-light">{{dateTime | date:'hh:mm:ss'}}</td>
                     </tr>
                     <tr>
-                        <td class="text-light">$25.26</td>
-                        <td class="text-light">+1.85</td>
+                        <td class="text-light" *ngIf="currentBitcoins[0]">${{currentBitcoins.length>0?currentBitcoins[1].bitcointPrice:0}}</td>
+                        <td class="text-light"><span *ngIf="currentBitcoins[0]"
+                            [ngClass]="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) < 0?'text-danger':'text-success'">
+                            {{(currentBitcoins.length>0?currentBitcoins[0].bitcointPrice -
+                            currentBitcoins[1].bitcointPrice:0) | number}} <span>
+                                <img *ngIf="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) < 0" width="20" height="20"
+                                    src="../../../assets/negative.png" /><img *ngIf="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) > 0" width="20" height="20"
+                                    src="../../../assets/positive.png" /></span></span></td>
                     </tr>
                 </tbody>
             </table>

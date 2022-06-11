@@ -1,17 +1,17 @@
 <div class="div_centrado">
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item disabled">
+            <li class="page-item" (click)="setSelectedNumber(currentPage>1?currentPage - 1:1)">
                 <a class="page-link" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <li class="page-item"><a class="page-link" (click)="setSelectedNumber(1)">1</a></li>
-            <li class="page-item active"><a class="page-link">2</a></li>
-            <li class="page-item"><a class="page-link" (click)="setSelectedNumber(2)">3</a></li>
-            <li class="page-item"><a class="page-link">4</a></li>
-            <li class="page-item"><a class="page-link">5</a></li>
-            <li class="page-item" (click)="setSelectedNumber(10)">
+            <li class="page-item" [ngClass]="(currentPage<6?1:currentPage - 4) == currentPage?'active':''"><a class="page-link" (click)="setSelectedNumber(currentPage<6?1:currentPage - 4)">{{currentPage<6?1:currentPage - 4}}</a></li>
+            <li class="page-item" [ngClass]="(currentPage<6?2:currentPage - 3) == currentPage?'active':''"><a class="page-link" (click)="setSelectedNumber(currentPage<6?2:currentPage - 3)">{{currentPage<6?2:currentPage - 3}}</a></li>
+            <li class="page-item" [ngClass]="(currentPage<6?3:currentPage - 2) == currentPage?'active':''"><a class="page-link" (click)="setSelectedNumber(currentPage<6?3:currentPage - 2)">{{currentPage<6?3:currentPage - 2}}</a></li>
+            <li class="page-item" [ngClass]="(currentPage<6?4:currentPage - 1) == currentPage?'active':''"><a class="page-link" (click)="setSelectedNumber(currentPage<6?4:currentPage - 1)">{{currentPage<6?4:currentPage - 1}}</a></li>
+            <li class="page-item" [ngClass]="(currentPage<6?5:currentPage) == currentPage?'active':''"><a class="page-link" (click)="setSelectedNumber(currentPage<6?5:currentPage)">{{currentPage<6?5:currentPage}}</a></li>
+            <li class="page-item" (click)="setSelectedNumber(currentPage + 1)">
                 <a class="page-link" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>

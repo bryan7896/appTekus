@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map, exhaustMap, catchError } from 'rxjs/operators';
 
-import { ActionTypes, getContador, putContador, setContador } from './global.action';
+import { ActionTypes, setCurrentBitcoins } from './global.action';
 import { ApiService } from '../services/api.services';
 import { GlobalService } from "../services/global.service"
 @Injectable()
@@ -17,26 +17,15 @@ export class GeneralEffects {
     private store$: Store,
   ) { }
 
-  getContador$ = createEffect(() =>
+  getCurrentBitcoins$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ActionTypes.getContador),
+      ofType(ActionTypes.getCurrentBitcoins),
       exhaustMap(() => {
-        return this.apiService.get('contadors', {}).pipe(
+        return this.apiService.get('currentBitcoins', {}).pipe(
           map(response => {
-            console.log('response', response[0].number)
-            return new setContador({ contador:  response[0].number })
+            console.log('response', response)
+            return new setCurrentBitcoins({ currentBitcoins:  response })
           })
-        );
-      })
-    ), { });
-
-  putContador$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType<putContador>(ActionTypes.putContador),
-      exhaustMap((action) => {
-        console.log('efect put',action.payload.num)
-        return this.apiService.put('contadors', {id: '6186d8108c2a703b51d64fb4', number: action.payload.num}).pipe(
-          map(() => new getContador())
         );
       })
     ), { });

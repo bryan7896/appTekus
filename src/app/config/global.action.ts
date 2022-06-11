@@ -2,33 +2,38 @@ import { Action } from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
 
 export enum ActionTypes {
+    initialState = '[global] initialState',
     ApiError = '[global] ApiError',
-    setContador = '[global] setContador',
-    putContador = '[global] putContador',
-    getContador = '[global] getContador',
+    setCurrentBitcoins = '[global] setCurrentBitcoins',
+    getCurrentBitcoins = '[global] getCurrentBitcoins',
+    setCurrentPage = '[global] setCurrentPage',
 }
 
 
+export class initialState implements Action {
+    readonly type = ActionTypes.initialState;
+}
 export class ApiError implements Action {
     readonly type = ActionTypes.ApiError;
     constructor(public payload: { error: HttpErrorResponse }) { }
 }
 
-export class setContador implements Action {
-    readonly type = ActionTypes.setContador;
-    constructor(public payload: { contador: number }) { }
+export class setCurrentBitcoins implements Action {
+    readonly type = ActionTypes.setCurrentBitcoins;
+    constructor(public payload: { currentBitcoins: Array<any> }) { }
 }
 
-export class getContador implements Action {
-    readonly type = ActionTypes.getContador;
+export class getCurrentBitcoins implements Action {
+    readonly type = ActionTypes.getCurrentBitcoins;
 }
-
-export class putContador implements Action {
-    readonly type = ActionTypes.putContador;
-    constructor(public payload: { num: number }) { }
+export class setCurrentPage implements Action {
+    readonly type = ActionTypes.setCurrentPage;
+    constructor(public payload: { currentPage: number }) { }
 }
 
 
 export type actions =
     ApiError
-    | setContador
+    | setCurrentBitcoins
+    | getCurrentBitcoins
+    | setCurrentPage

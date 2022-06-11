@@ -17,11 +17,13 @@ export const reducers: ActionReducerMap<State> = {
 };
 
 export interface GlobalState {
-  contador: number;
+  currentBitcoins: Array<any>,
+  currentPage: number,
 }
 
 export const inicialStateGlobal: GlobalState = {
-  contador: 0
+  currentBitcoins: [],
+  currentPage: 1,
 };
 
 export function globalReducer(state: GlobalState = inicialStateGlobal, action: actions): GlobalState {
@@ -31,10 +33,19 @@ export function globalReducer(state: GlobalState = inicialStateGlobal, action: a
 export function globalMetaReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state: State, action: any) {
     switch (action.type) {
-      case ActionTypes.setContador:
+      case ActionTypes.initialState:
+        return {
+          ...inicialStateGlobal
+        };
+      case ActionTypes.setCurrentBitcoins:
         return {
           ...state,
-          contador: action.payload.contador
+          currentBitcoins: action.payload.currentBitcoins
+        };
+      case ActionTypes.setCurrentPage:
+        return {
+          ...state,
+          currentPage: action.payload.currentPage
         };
       default:
         return reducer(state, action);
