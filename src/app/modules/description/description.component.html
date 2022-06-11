@@ -1,38 +1,41 @@
 <div class="container">
     <div class="row">
-        <div class="col text-center">
+        <div class="col-4 text-center">
             <img class="logoBitcoin" src="../../../assets/bitcoin.gif" /><br>
-            <img class="logoBitcoin" src="../../../assets/bitcoin.gif" />
             <button type="button" class="btn btn-dark" (click)="navigateHome()">
                 <img class="imgReturn" src="../../../assets/home.png" />
             </button>
-            <img class="logoBitcoin" src="../../../assets/bitcoin.gif" />
         </div>
-        <div class="col">
+        
+        <div class="col-8">
             <table class="table">
                 <tbody>
                     <tr>
                         <td class="text-light"><span *ngIf="currentBitcoins[0]"
-                            [ngClass]="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) < 0?'text-danger':'text-success'">
-                            ${{currentBitcoins.length>0?currentBitcoins[0].bitcointPrice:0}}</span></td>
+                                [ngClass]="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) < 0?'text-danger':'text-success'">
+                                {{typeOfCurrency.symbol}}{{((currentBitcoins.length>0?currentBitcoins[0].bitcointPrice:0)* typeOfCurrency.TRM) | number}}</span></td>
                         <td class="text-light">{{dateTime | date:'hh:mm:ss'}}</td>
                     </tr>
                     <tr>
-                        <td class="text-light" *ngIf="currentBitcoins[0]">${{currentBitcoins.length>0?currentBitcoins[1].bitcointPrice:0}}</td>
+                        <td class="text-light" *ngIf="currentBitcoins[0]">
+                            {{typeOfCurrency.symbol}}{{((currentBitcoins.length>0?currentBitcoins[1].bitcointPrice:0) * typeOfCurrency.TRM) | number}}</td>
                         <td class="text-light"><span *ngIf="currentBitcoins[0]"
-                            [ngClass]="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) < 0?'text-danger':'text-success'">
-                            {{(currentBitcoins.length>0?currentBitcoins[0].bitcointPrice -
-                            currentBitcoins[1].bitcointPrice:0) | number}} <span>
-                                <img *ngIf="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) < 0" width="20" height="20"
-                                    src="../../../assets/negative.png" /><img *ngIf="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) > 0" width="20" height="20"
-                                    src="../../../assets/positive.png" /></span></span></td>
+                                [ngClass]="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) < 0?'text-danger':'text-success'">
+                                {{typeOfCurrency.symbol}}{{((currentBitcoins.length>0?currentBitcoins[0].bitcointPrice -
+                                currentBitcoins[1].bitcointPrice:0) * typeOfCurrency.TRM) | number}} <span>
+                                    <img *ngIf="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) < 0"
+                                        width="20" height="20" src="../../../assets/negative.png" /><img
+                                        *ngIf="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) > 0"
+                                        width="20" height="20" src="../../../assets/positive.png" /></span></span></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+<app-date-format style="text-align: end;"></app-date-format>
 <div class="p-4">
-    <app-description-table [selectedDay]="selectedDayUser" [currentTable]="listTable"></app-description-table>
+    <app-description-table *ngIf="detailsOfTheDay.length>0" [selectedDay]="selectedDate"
+        [currentTable]="detailsOfTheDay"></app-description-table>
 </div>
 <app-pagination (selectedNumber)="selectedNumber($event)" [currentPage]="currentPage"></app-pagination>

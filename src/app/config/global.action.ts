@@ -7,6 +7,12 @@ export enum ActionTypes {
     setCurrentBitcoins = '[global] setCurrentBitcoins',
     getCurrentBitcoins = '[global] getCurrentBitcoins',
     setCurrentPage = '[global] setCurrentPage',
+    setSelectedDate = '[global] setSelectedDate',
+    getDaysBitcoin = '[global] getDaysBitcoin',
+    setDaysBitcoin = '[global] setDaysBitcoin',
+    getDetailsOfTheDay = '[global] getDetailsOfTheDay',
+    setDetailsOfTheDay = '[global] setDetailsOfTheDay',
+    setTypeOfCurrency = '[global] setTypeOfCurrency',
 }
 
 
@@ -30,6 +36,28 @@ export class setCurrentPage implements Action {
     readonly type = ActionTypes.setCurrentPage;
     constructor(public payload: { currentPage: number }) { }
 }
+export class setSelectedDate implements Action {
+    readonly type = ActionTypes.setSelectedDate;
+    constructor(public payload: { selectedDate: Object }) { }
+}
+export class setTypeOfCurrency implements Action {
+    readonly type = ActionTypes.setTypeOfCurrency;
+    constructor(public payload: { typeOfCurrency: Object }) { }
+}
+export class getDaysBitcoin implements Action {
+    readonly type = ActionTypes.getDaysBitcoin;
+}
+export class setDaysBitcoin implements Action {
+    readonly type = ActionTypes.setDaysBitcoin;
+    constructor(public payload: { daysBitcoin: Array<any> }) { }
+}
+export class setDetailsOfTheDay implements Action {
+    readonly type = ActionTypes.setDetailsOfTheDay;
+    constructor(public payload: { detailsOfTheDay: Array<any> }) { }
+}
+export class getDetailsOfTheDay implements Action {
+    readonly type = ActionTypes.getDetailsOfTheDay;
+}
 
 
 export type actions =
@@ -37,3 +65,9 @@ export type actions =
     | setCurrentBitcoins
     | getCurrentBitcoins
     | setCurrentPage
+    | setSelectedDate
+    | getDaysBitcoin
+    | getDetailsOfTheDay
+    | setDetailsOfTheDay
+    | setDaysBitcoin
+    | setTypeOfCurrency

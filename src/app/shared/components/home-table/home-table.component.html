@@ -7,30 +7,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>18/05/05</td>
-            <td>$25.26</td>
-            <td><button type="button" class="btn btn-success" (click)="navigateDescription()">Ver</button></td>
-        </tr>
-        <tr>
-            <td>18/05/05</td>
-            <td>$25.26</td>
-            <td><button type="button" class="btn btn-success">Ver</button></td>
-        </tr>
-        <tr>
-            <td>18/05/05</td>
-            <td>$25.26</td>
-            <td><button type="button" class="btn btn-success">Ver</button></td>
-        </tr>
-        <tr>
-            <td>18/05/4</td>
-            <td>$25.26</td>
-            <td><button type="button" class="btn btn-success">Ver</button></td>
-        </tr>
-        <tr>
-            <td>18/05/04</td>
-            <td>$25.26</td>
-            <td><button type="button" class="btn btn-success">Ver</button></td>
+        <tr *ngFor="let dayBitcoin of daysBitcoin">
+            <td>{{dayBitcoin.createdAt | date:'dd-MMM-yyyy'}}</td>
+            <td>{{typeOfCurrency.symbol}}{{(dayBitcoin.bitcointPrice * typeOfCurrency.TRM) | number}}</td>
+            <td><button type="button" class="btn btn-success" (click)="selectedDay(dayBitcoin)">Ver</button></td>
         </tr>
     </tbody>
 </table>

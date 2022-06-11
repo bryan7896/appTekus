@@ -18,12 +18,20 @@ export const reducers: ActionReducerMap<State> = {
 
 export interface GlobalState {
   currentBitcoins: Array<any>,
+  daysBitcoin: Array<any>,
+  detailsOfTheDay: Array<any>,
   currentPage: number,
+  selectedDate: Object,
+  typeOfCurrency: Object,
 }
 
 export const inicialStateGlobal: GlobalState = {
   currentBitcoins: [],
+  daysBitcoin: [],
+  detailsOfTheDay: [],
   currentPage: 1,
+  selectedDate: {},
+  typeOfCurrency: {name: 'USD', TRM: 1, symbol: '$'},
 };
 
 export function globalReducer(state: GlobalState = inicialStateGlobal, action: actions): GlobalState {
@@ -46,6 +54,26 @@ export function globalMetaReducer(reducer: ActionReducer<any>): ActionReducer<an
         return {
           ...state,
           currentPage: action.payload.currentPage
+        };
+      case ActionTypes.setSelectedDate:
+        return {
+          ...state,
+          selectedDate: action.payload.selectedDate
+        };
+      case ActionTypes.setDaysBitcoin:
+        return {
+          ...state,
+          daysBitcoin: action.payload.daysBitcoin
+        };
+      case ActionTypes.setDetailsOfTheDay:
+        return {
+          ...state,
+          detailsOfTheDay: action.payload.detailsOfTheDay
+        };
+      case ActionTypes.setTypeOfCurrency:
+        return {
+          ...state,
+          typeOfCurrency: action.payload.typeOfCurrency
         };
       default:
         return reducer(state, action);

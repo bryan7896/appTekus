@@ -1,0 +1,7 @@
+<form [formGroup]="form" style="padding-right: 25px">
+    <select class="bg-dark text-light" formControlName="state" (change)="whenSelectingTypeOfCurrency()">
+        <option *ngFor="let state of states" [ngValue]="state">
+            {{ state.name }}
+        </option>
+    </select>
+</form>

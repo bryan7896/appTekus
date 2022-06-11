@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { setCurrentPage } from 'src/app/config/global.action';
+import { getDetailsOfTheDay, setCurrentPage } from 'src/app/config/global.action';
 import { GlobalState } from 'src/app/config/global.reducer';
 
 @Component({
@@ -15,21 +15,38 @@ export class DescriptionComponent implements OnInit {
   constructor(private router: Router, private store: Store<GlobalState>) { }
   dateTime: Date = new Date();
 
-  listTable: Array<any> = [1, 2, 3];
-  selectedDayUser: Object = { hola: 'hola' };
-
   currentPage$: Observable<any> = this.store.select(state => state.currentPage);
   currentPage: number = 1;
+
+  detailsOfTheDay$: Observable<any> = this.store.select(state => state.detailsOfTheDay);
+  detailsOfTheDay: Array<any> = [];
+
   currentBitcoins$: Observable<any> = this.store.select(state => state.currentBitcoins);
   currentBitcoins: Array<any> = [];
 
+  selectedDate$: Observable<any> = this.store.select(state => state.selectedDate);
+  selectedDate: Object = {};
+
+  typeOfCurrency$: Observable<any> = this.store.select(state => state.typeOfCurrency);
+  typeOfCurrency: any = {name: 'USD', TRM: 1, symbol: '$'};
+
 
   ngOnInit() {
+    this.store.dispatch(new setCurrentPage({currentPage: 1}));
+    this.store.dispatch(new getDetailsOfTheDay());
     this.currentBitcoins$.subscribe((currentBitcoins) => {
       this.currentBitcoins = currentBitcoins
     })
+    this.typeOfCurrency$.subscribe((typeOfCurrency) => {
+      this.typeOfCurrency = typeOfCurrency
+    })
+    this.selectedDate$.subscribe((selectedDate) => {
+      this.selectedDate = selectedDate
+    })
+    this.detailsOfTheDay$.subscribe((detailsOfTheDay) => {
+      this.detailsOfTheDay = detailsOfTheDay
+    })
     this.currentPage$.subscribe((currentPage) => {
-      console.log('currentPage',currentPage)
       this.currentPage = currentPage
     })
     this.timeout()
@@ -46,5 +63,6 @@ export class DescriptionComponent implements OnInit {
   }
   selectedNumber(currentPage: number) {
     this.store.dispatch(new setCurrentPage({currentPage}));
+    this.store.dispatch(new getDetailsOfTheDay());
   }
 }

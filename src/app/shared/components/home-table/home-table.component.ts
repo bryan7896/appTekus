@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { GlobalState } from 'src/app/config/global.reducer';
 
 @Component({
   selector: 'app-home-table',
@@ -8,13 +11,26 @@ import { Router } from '@angular/router';
 })
 export class HomeTableComponent implements OnInit {
 
-  constructor( private router: Router ) { }
+  @Input() daysBitcoin: Array<any> = [];
+  @Output() setSelectedDay = new EventEmitter<any>();
 
-  ngOnInit(): void {
+  constructor(private router: Router, private store: Store<GlobalState>) { }
+
+  typeOfCurrency$: Observable<any> = this.store.select(state => state.typeOfCurrency);
+  typeOfCurrency: any = { name: 'USD', TRM: 1, symbol: '$' };
+  ngOnInit() {
+    this.typeOfCurrency$.subscribe((typeOfCurrency) => {
+      this.typeOfCurrency = typeOfCurrency
+    })
   }
 
-  navigateDescription(){
+  navigateDescription() {
     this.router.navigate(['/', 'description']);
+  }
+
+  selectedDay(priceDay: Object) {
+    this.setSelectedDay.emit(priceDay);
+    this.navigateDescription()
   }
 
 }
