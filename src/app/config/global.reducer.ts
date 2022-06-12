@@ -1,8 +1,6 @@
 import {
   ActionReducer,
   ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
   MetaReducer
 } from '@ngrx/store';
 import { ActionTypes, actions } from './global.action';
@@ -25,6 +23,7 @@ export interface GlobalState {
   typeOfCurrency: Object,
 }
 
+//Initialization of the variables that will be used in the state
 export const inicialStateGlobal: GlobalState = {
   currentBitcoins: [],
   daysBitcoin: [],
@@ -38,6 +37,7 @@ export function globalReducer(state: GlobalState = inicialStateGlobal, action: a
   return state;
 }
 
+//Cases of actions to set the state variables
 export function globalMetaReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state: State, action: any) {
     switch (action.type) {

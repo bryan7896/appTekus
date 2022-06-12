@@ -37,15 +37,12 @@ export class HomeComponent implements OnInit {
 
     this.store.dispatch(new setCurrentPage({currentPage: 1}));
     this.currentBitcoins$.subscribe((currentBitcoins) => {
-      console.log('---_>>_>_',currentBitcoins)
       this.currentBitcoins = currentBitcoins
     })
     this.daysBitcoinSubscription = this.daysBitcoin$.subscribe((daysBitcoin) => {
-      console.log('--daysBitcoin--',daysBitcoin)
       this.daysBitcoin = daysBitcoin
     })
     this.currentPage$.subscribe((currentPage) => {
-      console.log('currentPage',currentPage)
       this.currentPage = currentPage
     })
     this.timeout()
@@ -59,6 +56,7 @@ export class HomeComponent implements OnInit {
   }
 
   setSelectedDay(event: Object){
+    //Save the information of the selected data in the state and in the storage
     this.globalService.setStorage('selectedDate', {selectedDate: event})
     this.store.dispatch(new setSelectedDate({selectedDate: event}));
   }

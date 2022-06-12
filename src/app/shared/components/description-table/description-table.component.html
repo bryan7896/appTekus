@@ -21,12 +21,12 @@
             <td>{{typeOfCurrency.symbol}}{{(table.bitcointPrice * typeOfCurrency.TRM) | number}}
                 <span *ngIf="currentTable[i+1]">
                     <img *ngIf="(table.bitcointPrice - currentTable[i+1].bitcointPrice) < 0" width="20" height="20"
-                        src="../../../../assets/negative.png" />
+                        src="assets/negative.png" />
                     <img *ngIf="(table.bitcointPrice - currentTable[i+1].bitcointPrice) > 0" width="20" height="20"
-                        src="../../../../assets/positive.png" />
+                        src="assets/positive.png" />
                 </span>
                 <span *ngIf="!currentTable[i+1]">
-                    <img width="20" height="20" src="../../../../assets/negative.png" />
+                    <img width="20" height="20" src="assets/negative.png" />
                 </span>
             </td>
         </tr>

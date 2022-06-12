@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col-4 text-center">
-            <img class="logoBitcoin" src="../../../assets/bitcoin.gif" /><br>
+            <img class="logoBitcoin" src="assets/bitcoin.gif" /><br>
             <button type="button" class="btn btn-dark" (click)="navigateHome()">
-                <img class="imgReturn" src="../../../assets/home.png" />
+                <img class="imgReturn" src="assets/home.png" />
             </button>
         </div>
         
@@ -24,9 +24,9 @@
                                 {{typeOfCurrency.symbol}}{{((currentBitcoins.length>0?currentBitcoins[0].bitcointPrice -
                                 currentBitcoins[1].bitcointPrice:0) * typeOfCurrency.TRM) | number}} <span>
                                     <img *ngIf="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) < 0"
-                                        width="20" height="20" src="../../../assets/negative.png" /><img
+                                        width="20" height="20" src="assets/negative.png" /><img
                                         *ngIf="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) > 0"
-                                        width="20" height="20" src="../../../assets/positive.png" /></span></span></td>
+                                        width="20" height="20" src="assets/positive.png" /></span></span></td>
                     </tr>
                 </tbody>
             </table>

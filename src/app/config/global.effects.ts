@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { map, exhaustMap, catchError, withLatestFrom, filter } from 'rxjs/operators';
+import { map, exhaustMap, withLatestFrom } from 'rxjs/operators';
 
 import { ActionTypes, setCurrentBitcoins, setDaysBitcoin, setDetailsOfTheDay } from './global.action';
 import { ApiService } from '../services/api.services';
@@ -18,7 +17,8 @@ export class GeneralEffects {
     private store$: Store<GlobalState>,
   ) { }
 
-  /* getCurrentBitcoins$ = createEffect(() =>
+  //Fetch the last 2 bitcoin records
+  getCurrentBitcoins$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ActionTypes.getCurrentBitcoins),
       exhaustMap(() => {
@@ -29,8 +29,9 @@ export class GeneralEffects {
           })
         );
       })
-    ), {}); */
+    ), {});
 
+  //Bring the last bircoit record of the last 5 days, this effect has pagination
   getDaysBitcoin$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ActionTypes.getDaysBitcoin),
@@ -46,6 +47,7 @@ export class GeneralEffects {
       })
     ), {});
 
+  //Bring the last 7 bitcoins data for the selected day, this effect has pagination
   getDetailsOfTheDay$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ActionTypes.getDetailsOfTheDay),

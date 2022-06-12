@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new getCurrentBitcoins());
     this.timeout()
     
+    //Update state variables for data stored in storage
     this.getStorage('currentBitcoins').subscribe((res)=> res!=null?this.store.dispatch(new setCurrentBitcoins({currentBitcoins: res.currentBitcoins})):null)
     this.getStorage('daysBitcoin').subscribe((res)=> res!=null?this.store.dispatch(new setDaysBitcoin({daysBitcoin: res.daysBitcoin})):null)
     this.getStorage('detailsOfTheDay').subscribe((res)=> res!=null?this.store.dispatch(new setDetailsOfTheDay({detailsOfTheDay: res.detailsOfTheDay})):null)
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
     this.getStorage('typeOfCurrency').subscribe((res)=> res!=null?this.store.dispatch(new setTypeOfCurrency({typeOfCurrency: res.typeOfCurrency})):null)
   }
 
+  //Method that returns the result stored in storage
   getStorage(storage: string) {
     return this.globalService.getStorage(storage).pipe(
       map(storage => storage)

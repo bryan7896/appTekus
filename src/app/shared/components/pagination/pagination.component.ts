@@ -12,7 +12,6 @@ export class PaginationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('currentPage', this.currentPage)
   }
 
   setSelectedNumber(num: number){

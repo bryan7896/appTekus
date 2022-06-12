@@ -14,10 +14,10 @@ import { GlobalService } from 'src/app/services/global.service';
 export class DateFormatComponent implements OnInit {
 
   constructor(private store: Store<GlobalState>,
-    private formBuilder: FormBuilder,
     private globalService: GlobalService,
     ) { }
 
+  //Currency type select properties
   states = [
     {name: 'USD', TRM: 1, symbol: '$'},
     {name: 'EUR', TRM: 0.95, symbol: '€'},
@@ -39,7 +39,7 @@ export class DateFormatComponent implements OnInit {
   }
 
   whenSelectingTypeOfCurrency(){
-    console.log('form',this.form.value.state)
+    //Set the state of the currency type and store that same variable in the storage
     this.globalService.setStorage('typeOfCurrency', {typeOfCurrency: this.form.value.state})
     this.store.dispatch(new setTypeOfCurrency({typeOfCurrency: this.form.value.state}))
   }

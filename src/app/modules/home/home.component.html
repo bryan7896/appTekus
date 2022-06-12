@@ -1,7 +1,7 @@
 <div class="centerLogo">
-    <img class="logoBitcoin2" src="../../../assets/bitcoin.gif" />
-    <img class="logoBitcoin" src="../../../assets/bitcoin.gif" />
-    <img class="logoBitcoin2" src="../../../assets/bitcoin.gif" />
+    <img class="logoBitcoin2" src="assets/bitcoin.gif" />
+    <img class="logoBitcoin" src="assets/bitcoin.gif" />
+    <img class="logoBitcoin2" src="assets/bitcoin.gif" />
 </div>
 <app-date-format style="text-align: end;"></app-date-format>
 <div class="p-4">
@@ -11,7 +11,8 @@
                 <td>
                     <h1 *ngIf="currentBitcoins[0]"
                         [ngClass]="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) < 0?'text-danger':'text-success'">
-                        {{typeOfCurrency.symbol}}{{((currentBitcoins.length>0?currentBitcoins[0].bitcointPrice:0) * typeOfCurrency.TRM) | number}}</h1>
+                        {{typeOfCurrency.symbol}}{{((currentBitcoins.length>0?currentBitcoins[0].bitcointPrice:0) *
+                        typeOfCurrency.TRM) | number}}</h1>
                 </td>
                 <td>
                     <p>{{dateTime | date:'dd-MMM-yyyy hh:mm:ss'}}</p>
@@ -19,7 +20,9 @@
             </tr>
             <tr>
                 <td>
-                    <h3 *ngIf="currentBitcoins[0]">{{typeOfCurrency.symbol}}{{((currentBitcoins.length>0?currentBitcoins[1].bitcointPrice:0) * typeOfCurrency.TRM) | number}}</h3>
+                    <h3 *ngIf="currentBitcoins[0]">
+                        {{typeOfCurrency.symbol}}{{((currentBitcoins.length>0?currentBitcoins[1].bitcointPrice:0) *
+                        typeOfCurrency.TRM) | number}}</h3>
                 </td>
                 <td>
                     <p *ngIf="currentBitcoins[0]"
@@ -27,14 +30,15 @@
                         {{((currentBitcoins.length>0?currentBitcoins[0].bitcointPrice -
                         currentBitcoins[1].bitcointPrice:0) * typeOfCurrency.TRM) | number}} <span>
                             <img *ngIf="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) < 0"
-                                width="20" height="20" src="../../../assets/negative.png" /><img
+                                width="20" height="20" src="assets/negative.png" /><img
                                 *ngIf="(currentBitcoins[0].bitcointPrice - currentBitcoins[1].bitcointPrice) > 0"
-                                width="20" height="20" src="../../../assets/positive.png" /></span></p>
+                                width="20" height="20" src="assets/positive.png" /></span></p>
 
                 </td>
             </tr>
         </tbody>
     </table>
-    <app-home-table *ngIf="daysBitcoin.length>0" (setSelectedDay)="setSelectedDay($event)" [daysBitcoin]="daysBitcoin"></app-home-table>
+    <app-home-table *ngIf="daysBitcoin.length>0" (setSelectedDay)="setSelectedDay($event)" [daysBitcoin]="daysBitcoin">
+    </app-home-table>
 </div>
 <app-pagination (selectedNumber)="selectedNumber($event)" [currentPage]="currentPage"></app-pagination>
