@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { getCurrentBitcoins, initialState } from './config/global.action';
+import { map } from 'rxjs/operators';
+import { getCurrentBitcoins, initialState, setCurrentBitcoins, setDaysBitcoin, setDetailsOfTheDay, setSelectedDate, setTypeOfCurrency } from './config/global.action';
+import { GlobalService } from './services/global.service';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +13,25 @@ export class AppComponent implements OnInit {
 
   constructor(
     private store: Store,
+    private globalService: GlobalService,
   ) { }
 
-  ngAfterViewInit() {
-    //inicializa el estado de redux
-    this.store.dispatch(new initialState());
-  }
-
-
   ngOnInit() {
+    this.store.dispatch(new initialState());
     this.store.dispatch(new getCurrentBitcoins());
     this.timeout()
+    
+    this.getStorage('currentBitcoins').subscribe((res)=> res!=null?this.store.dispatch(new setCurrentBitcoins({currentBitcoins: res.currentBitcoins})):null)
+    this.getStorage('daysBitcoin').subscribe((res)=> res!=null?this.store.dispatch(new setDaysBitcoin({daysBitcoin: res.daysBitcoin})):null)
+    this.getStorage('detailsOfTheDay').subscribe((res)=> res!=null?this.store.dispatch(new setDetailsOfTheDay({detailsOfTheDay: res.detailsOfTheDay})):null)
+    this.getStorage('selectedDate').subscribe((res)=> res!=null?this.store.dispatch(new setSelectedDate({selectedDate: res.selectedDate})):null)
+    this.getStorage('typeOfCurrency').subscribe((res)=> res!=null?this.store.dispatch(new setTypeOfCurrency({typeOfCurrency: res.typeOfCurrency})):null)
+  }
+
+  getStorage(storage: string) {
+    return this.globalService.getStorage(storage).pipe(
+      map(storage => storage)
+    );
   }
 
   //Property to keep bringing every minute the update of the value of bitcoin

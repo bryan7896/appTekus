@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { getDaysBitcoin, setCurrentPage, setSelectedDate } from 'src/app/config/global.action';
 import { GlobalState } from 'src/app/config/global.reducer';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { GlobalState } from 'src/app/config/global.reducer';
 })
 export class HomeComponent implements OnInit {
   dateTime: Date = new Date();
-  constructor(private store: Store<GlobalState>) { }
+  constructor(private store: Store<GlobalState>, private globalService: GlobalService) { }
 
   currentPage$: Observable<any> = this.store.select(state => state.currentPage);
   currentPage: number = 1;
@@ -36,6 +37,7 @@ export class HomeComponent implements OnInit {
 
     this.store.dispatch(new setCurrentPage({currentPage: 1}));
     this.currentBitcoins$.subscribe((currentBitcoins) => {
+      console.log('---_>>_>_',currentBitcoins)
       this.currentBitcoins = currentBitcoins
     })
     this.daysBitcoinSubscription = this.daysBitcoin$.subscribe((daysBitcoin) => {
@@ -57,6 +59,7 @@ export class HomeComponent implements OnInit {
   }
 
   setSelectedDay(event: Object){
+    this.globalService.setStorage('selectedDate', {selectedDate: event})
     this.store.dispatch(new setSelectedDate({selectedDate: event}));
   }
   selectedNumber(currentPage: number) {

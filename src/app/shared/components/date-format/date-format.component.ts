@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { setTypeOfCurrency } from 'src/app/config/global.action';
 import { GlobalState } from 'src/app/config/global.reducer';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-date-format',
@@ -14,6 +15,7 @@ export class DateFormatComponent implements OnInit {
 
   constructor(private store: Store<GlobalState>,
     private formBuilder: FormBuilder,
+    private globalService: GlobalService,
     ) { }
 
   states = [
@@ -38,6 +40,7 @@ export class DateFormatComponent implements OnInit {
 
   whenSelectingTypeOfCurrency(){
     console.log('form',this.form.value.state)
+    this.globalService.setStorage('typeOfCurrency', {typeOfCurrency: this.form.value.state})
     this.store.dispatch(new setTypeOfCurrency({typeOfCurrency: this.form.value.state}))
   }
 
